@@ -30,6 +30,8 @@ private slots:
 
     void on_btn_gen_rand_polygon_clicked();
 
+    void on_btn_clear_clicked();
+
 private:
     Ui::Widget *ui;
 };

@@ -17,9 +17,11 @@ public:
     void saveActualPolygon();
     void drawPolygon(QPolygonF polygon);
     void drawFilledPolygon(QPolygonF polygon);
+    void drawBorderPolygon(QPolygonF polygon);
     void addFilledPolygon(QPolygonF polygon){filledPolygons.push_back(polygon);}
     void addBorderPolygon(QPolygonF polygon){borderPolygons.push_back(polygon);}
     void clearHighlitedPolygons(){filledPolygons.clear();borderPolygons.clear();}
+    void clearAll(){this->clearHighlitedPolygons();polygons.clear();analyzePoint.setX(-999);analyzePoint.setY(-999);repaint();}
 
 
     // Getters & Setters

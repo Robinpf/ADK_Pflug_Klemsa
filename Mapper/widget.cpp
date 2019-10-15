@@ -117,3 +117,8 @@ void Widget::on_btn_gen_rand_polygon_clicked()
     ui->canvas->saveActualPolygon();
     repaint();
 }
+
+void Widget::on_btn_clear_clicked()
+{
+    ui->canvas->clearAll();
+}

@@ -62,6 +62,12 @@ void Draw::paintEvent(QPaintEvent *e)
         drawFilledPolygon(filledPolygons[i]);
     }
 
+    // Draw highlited polygons.
+    for (int i = 0; i < borderPolygons.size(); i++)
+    {
+        drawBorderPolygon(borderPolygons[i]);
+    }
+
     qp.end();
 }
 
@@ -91,6 +97,26 @@ void Draw::drawFilledPolygon(QPolygonF polygon)
     // Set brush.
     QBrush brush;
     brush.setColor(Qt::red);
+    brush.setStyle(Qt::Dense3Pattern);
+    QPainterPath painterPath;
+    QVector<QPoint> brushPoly;
+
+    painterPath.addPolygon(polygon);
+    qp.fillPath(painterPath, brush);
+    qp.drawPolygon(polygon);
+
+    qp.end();
+}
+
+void Draw::drawBorderPolygon(QPolygonF polygon)
+{
+    // Start QPainter.
+    QPainter qp(this);
+    qp.begin(this);
+
+    // Set brush.
+    QBrush brush;
+    brush.setColor(Qt::green);
     brush.setStyle(Qt::Dense3Pattern);
     QPainterPath painterPath;
     QVector<QPoint> brushPoly;
