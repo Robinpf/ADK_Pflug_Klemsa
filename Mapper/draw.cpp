@@ -56,10 +56,16 @@ void Draw::paintEvent(QPaintEvent *e)
         drawPolygon(polygons[i]);
     }
 
+    // Draw all poly filled.
+    for (int i = 0; i < filledPolygons.size(); i++)
+    {
+        drawFilledPolygon(filledPolygons[i]);
+    }
+
     qp.end();
 }
 
-void Draw::drawPolygon(std::vector<QPoint> polygon)
+void Draw::drawPolygon(QPolygonF polygon)
 {
     QPainter qp(this);
     qp.begin(this);
@@ -71,32 +77,40 @@ void Draw::drawPolygon(std::vector<QPoint> polygon)
         qp.drawEllipse(polygon[i].x() - apoly_r/2,polygon[i].y() - apoly_r/2, apoly_r, apoly_r);
     }
 
-    QPolygon qpoly;
-    for(int i = 0;i < polygon.size(); i++)
-    {
-        qpoly.append(polygon[i]);
-    }
-
-    qp.drawPolygon(qpoly);
+    qp.drawPolygon(polygon);
 
     qp.end();
 }
 
-void Draw::drawFilledPolygon(std::vector<QPoint> polygon)
+void Draw::drawFilledPolygon(QPolygonF polygon)
 {
+    // Start QPainter.
     QPainter qp(this);
     qp.begin(this);
+
+    // Set brush.
+    QBrush brush;
+    brush.setColor(Qt::red);
+    brush.setStyle(Qt::Dense3Pattern);
+    QPainterPath painterPath;
+    QVector<QPoint> brushPoly;
+
+    painterPath.addPolygon(polygon);
+    qp.fillPath(painterPath, brush);
+    qp.drawPolygon(polygon);
 
     qp.end();
 }
 
 void Draw::saveActualPolygon()
 {
-    polygons.push_back(actualPolygon);
-    actualPolygon.clear();
+    if (!actualPolygon.isEmpty()) {
+        polygons.push_back(actualPolygon);
+        actualPolygon.clear();
+    }
 }
 
-void Draw::setPolygons(std::vector<std::vector<QPoint>> polygons)
+void Draw::setPolygons(QVector<QPolygonF> polygons)
 {
     this->polygons = polygons;
     repaint();

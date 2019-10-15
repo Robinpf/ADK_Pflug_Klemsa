@@ -2,6 +2,7 @@
 #define ALGORITHMS_H
 #include <QPoint>
 #include <vector>
+#include <QPolygonF>
 
 class Algorithms
 {
@@ -11,11 +12,11 @@ private:
 public:
 
     Algorithms();
-    static int getPointLinePosition(QPoint &q,QPoint &p1,QPoint &p2);
-    static double getAngle2Vectors(QPoint &p1,QPoint &p2,QPoint &p3,QPoint &p4);
-    static int positionPointPolygonWinding(QPoint &q, std::vector<QPoint> &pol);
-    static int positionPointPolygonRayCrossing(QPoint &q, std::vector<QPoint> &pol);
-    static std::vector<QPoint> createRandomPolygon();
+    static int getPointLinePosition(QPointF &q,QPointF &p1,QPointF &p2);
+    static double getAngle2Vectors(QPointF &p1,QPointF &p2,QPointF &p3,QPointF &p4);
+    static int positionPointPolygonWinding(QPointF &q, QPolygonF &pol);
+    static int positionPointPolygonRayCrossing(QPointF &q, QPolygonF &pol);
+    static QPolygonF createRandomPolygon();
 };
 
 #endif // ALGORITHMS_H

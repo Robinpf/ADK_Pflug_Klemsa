@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "vector"
-#include "geometrical.h"
 
 namespace Ui {
 class Widget;
@@ -17,8 +16,6 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
-    // Add new geometrical to geometrical vector.
-    void addGeometrical(Geometrical geometrical){geomObjects.push_back(geometrical);}
 
 private slots:
     void on_btn_imp_polygons_clicked();
@@ -31,10 +28,10 @@ private slots:
 
     void on_btn_anl_polygon_point_clicked();
 
+    void on_btn_gen_rand_polygon_clicked();
+
 private:
     Ui::Widget *ui;
-
-    std::vector<Geometrical> geomObjects;
 };
 
 #endif // WIDGET_H

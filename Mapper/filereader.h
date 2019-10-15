@@ -1,15 +1,16 @@
 #ifndef FILEREADER_H
 #define FILEREADER_H
-#include "polygon.h"
 #include <QString>
 #include <QPoint>
+#include <vector>
+#include <QPolygonF>
 
 
 class FileReader
 {
 public:
     FileReader(std::string fileName);
-    std::vector<std::vector<QPoint>> polygonsImport();
+    QVector<QPolygonF> polygonsImport();
 
 private:
     std::string fileName;

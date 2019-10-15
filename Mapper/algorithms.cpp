@@ -2,7 +2,7 @@
 #include <cmath>
 #include <stdlib.h>
 #include <time.h>
-#include <QPoint>
+#include <QPointF>
 #include <vector>
 #include "draw.h"
 #include "algorithms.h"
@@ -12,7 +12,7 @@ Algorithms::Algorithms()
 }
 
 
-int Algorithms::getPointLinePosition(QPoint &q,QPoint &p1,QPoint &p2)
+int Algorithms::getPointLinePosition(QPointF &q, QPointF &p1, QPointF &p2)
 {
 
 //Tolerance
@@ -41,7 +41,7 @@ if (t < -eps)
 return -1;
 }
 
-double Algorithms::getAngle2Vectors(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
+double Algorithms::getAngle2Vectors(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4)
 {
     // Calculate Vector betwen 2 vectors.
     double ux = p2.x() - p1.x();
@@ -62,8 +62,11 @@ double Algorithms::getAngle2Vectors(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &
 }
 
 
-int Algorithms::positionPointPolygonWinding(QPoint &q, std::vector<QPoint> &pol)
+int Algorithms::positionPointPolygonWinding(QPointF &q, QPolygonF &pol)
 {
+    QPointF p_i1;
+    QPointF p_i2;
+
     // Analyze Position of the Point and the Polygon
     double wn = 0.0;
 
@@ -79,8 +82,11 @@ int Algorithms::positionPointPolygonWinding(QPoint &q, std::vector<QPoint> &pol)
     //Browse all points of polygon
     for (int i = 0; i < n; i++){
 
+        p_i1 = pol.at(i);
+        p_i2 = pol.at((i+1)%n);
+
         //Measure angle
-        double omega = getAngle2Vectors(pol[i], q, pol[(i+1)%n], q);
+        double omega = getAngle2Vectors(p_i1, q, p_i2, q);
 
         //Get orientation of the point and the polygon edge
         int orient = getPointLinePosition(q, pol[i], pol[(i+1)%n]);
@@ -122,7 +128,7 @@ int Algorithms::positionPointPolygonWinding(QPoint &q, std::vector<QPoint> &pol)
 }
 
 
-int Algorithms::positionPointPolygonRayCrossing(QPoint &q, std::vector<QPoint> &pol)
+int Algorithms::positionPointPolygonRayCrossing(QPointF &q, QPolygonF &pol)
 {
     // Analyze Position of the Point and the Polygon
     int k = 0;
@@ -134,15 +140,15 @@ int Algorithms::positionPointPolygonRayCrossing(QPoint &q, std::vector<QPoint> &
     double eps = 1.0e-6;
 
     //Reduce first point
-    double xir = pol[0].x() - q.x();
-    double yir = pol[0].y() - q.y();
+    double xir = pol.at(0).x() - q.x(); // BUG!!!!!
+    double yir = pol.at(0).y() - q.y();
 
     //All points of polygon
     for (int i = 1; i < n+1 ; i++)
     {
         //Reduce coordinates
-        double xiir = pol[i%n].x() - q.x();
-        double yiir = pol[i%n].y() - q.y();
+        double xiir = pol.at(i%n).x() - q.x();
+        double yiir = pol.at(i%n).y() - q.y();
 
         //Point in the upper half plane
         if ((yir > 0) && (yiir <= 0) || (yiir > 0) && (yir <= 0) )
@@ -180,15 +186,14 @@ int Algorithms::positionPointPolygonRayCrossing(QPoint &q, std::vector<QPoint> &
 }
 
 
-//POKUS
-std::vector<QPoint> createRandomPolygon(){
+QPolygonF Algorithms::createRandomPolygon(){
 
 	//declaration
 	double x = 0;
 	double y = 0;
 	double theta = 0;
 	double r = 0;
-	std::vector<QPoint> randPoints;
+    QVector<QPointF> randPoints;
 
 	//generate random points in i vertex polygon
 	for(int i = rand()% 20 + 4; i > 0; i--){
@@ -197,14 +202,16 @@ std::vector<QPoint> createRandomPolygon(){
 		r = rand()% 349 + 1; // pruvodic
 
 		//rendering x,y
-		x = r * sin(theta) + 418;
-		y = r * cos(theta) + 350;
-		QPoint newPoint(x,y);
+        x = r * sin(theta) + 350;
+        y = r * cos(theta) + 250;
+        QPointF newPoint(x,y);
 
 		//Beware for duplicates!
 		randPoints.push_back(newPoint);
 	}
-	return randPoints;
+
+    QPolygonF polygon(randPoints);
+    return polygon;
 }
 
 

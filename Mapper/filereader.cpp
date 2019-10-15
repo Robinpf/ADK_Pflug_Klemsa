@@ -8,7 +8,7 @@ FileReader::FileReader(std::string fileName)
     this->fileName = fileName;
 }
 
-std::vector<std::vector<QPoint>> FileReader::polygonsImport()
+QVector<QPolygonF> FileReader::polygonsImport()
 {
     std::ifstream imputFile;
     std::string line;
@@ -19,8 +19,8 @@ std::vector<std::vector<QPoint>> FileReader::polygonsImport()
     QPoint p;
     int num = 0;
     int i = 0;
-    std::vector<QPoint> polygon;
-    std::vector<std::vector<QPoint>> polygons;
+    QPolygonF polygon;
+    QVector<QPolygonF> polygons;
 
     if (imputFile.is_open())
     {
@@ -46,6 +46,7 @@ std::vector<std::vector<QPoint>> FileReader::polygonsImport()
         }
         // Push back last polygon.
         polygons.push_back(polygon);
+        polygon.clear();
     }
     else
     {

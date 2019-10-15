@@ -26,18 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    geometrical.cpp \
-    point.cpp \
-    polygon.cpp \
     filereader.cpp \
     draw.cpp \
     algorithms.cpp
 
 HEADERS += \
         widget.h \
-    geometrical.h \
-    point.h \
-    polygon.h \
     filereader.h \
     draw.h \
     algorithms.h

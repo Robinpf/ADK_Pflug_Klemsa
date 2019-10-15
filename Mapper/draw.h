@@ -15,22 +15,27 @@ public:
     void mousePressEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *e);
     void saveActualPolygon();
-    void drawPolygon(std::vector<QPoint>);
-    void drawFilledPolygon(std::vector<QPoint>);
+    void drawPolygon(QPolygonF polygon);
+    void drawFilledPolygon(QPolygonF polygon);
+    void addFilledPolygon(QPolygonF polygon){filledPolygons.push_back(polygon);}
+    void addBorderPolygon(QPolygonF polygon){borderPolygons.push_back(polygon);}
+    void clearHighlitedPolygons(){filledPolygons.clear();borderPolygons.clear();}
 
 
     // Getters & Setters
     void setDrawMode(DrawMode drawMode){this->drawMode = drawMode;}
-    void setActualPolygon(std::vector<QPoint> polygon){actualPolygon = polygon;}
+    void setActualPolygon(QPolygonF polygon){actualPolygon = polygon;}
     DrawMode getDrawMode(){return this->drawMode;}
-    std::vector<std::vector<QPoint>> getPolygons(){return polygons;}
-    QPoint getAnalyzePoint(){return analyzePoint;}
-    void setPolygons(std::vector<std::vector<QPoint>> polygons);
+    QVector<QPolygonF> getPolygons(){return polygons;}
+    QPointF getAnalyzePoint(){return analyzePoint;}
+    void setPolygons(QVector<QPolygonF> polygons);
 
     // Parameters
-    QPoint analyzePoint;
-    std::vector<std::vector<QPoint>> polygons; // vector of polygons.
-    std::vector<QPoint> actualPolygon; // vector of actual drawing polygon.
+    QPointF analyzePoint;
+    QVector<QPolygonF> polygons; // Vector of polygons.
+    QVector<QPolygonF> filledPolygons; // Filled polygons.
+    QVector<QPolygonF> borderPolygons; // Border polygons.
+    QPolygonF actualPolygon; // Vector of actual drawing polygon.
 
 private:
     DrawMode drawMode;
