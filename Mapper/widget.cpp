@@ -167,7 +167,7 @@ void Widget::on_btn_gen_rand_points_clicked()
 
     Shape shape = CIRCLE;
     shape = shp == "Square" ? SQUARE : shape;
-    shape = shp == "Grid" ? GRID : shape;
+    shape = shp == "Random" ? RANDOM : shape;
     shape = shp == "Raster" ? RASTER : shape;
 
 
@@ -196,7 +196,7 @@ void Widget::on_btn_tst_algorithms_clicked()
 
         for (n = 1; n <= n_max; n++)
         {
-            points = Algorithms::generateRandomPoints(sets[i],GRID);
+            points = Algorithms::generateRandomPoints(sets[i],RANDOM);
             timer.start();
             Algorithms::qHull(points);
             ui->console->insertPlainText("time: " + QString::number(timer.elapsed()) + "milliseconds\n");

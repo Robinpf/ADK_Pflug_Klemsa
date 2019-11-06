@@ -275,7 +275,7 @@ QVector<QPointF> Algorithms::generateRandomPoints(int numberOfPoints, Shape shap
         }
         break;
 
-    case GRID:
+    case RANDOM:
         for (int i = 1; i < numberOfPoints; i++)
         {
             // Create random point
@@ -337,66 +337,58 @@ QPolygonF Algorithms::strictlyConvex(QPolygonF &ch)
 
 QPolygonF Algorithms::jarvisScan(QVector<QPointF> &points)
 {
-    //Tolerance
-    double e = 1.0e-6;
-    //Convex hull
+    const double EPS = 10e-6;
+
     QPolygonF ch;
 
-    //Sort points by Y
     std::sort(points.begin(), points.end(), SortbyY());
-    QPointF q=points[0];
+    QPointF q = points[0];
 
     std::sort(points.begin(), points.end(), SortbyX());
-    QPointF r=points[0];
+    QPointF s = points[0];
 
-    //Initialize points pj, pjj
+    if(fabs(s.x()-q.x())< EPS)
+    s.setX(s.x()+100);
+
+    QPointF pjj(s.x(), q.y());
     QPointF pj = q;
-    QPointF pjj (r.x(), q.y());
 
-    // Add to CH
-    ch.push_back(q);
-
-    // Find points of CH
     do
     {
-    double om_max = 0;
-    int i_max = 0;
-    double d_min = 1e9;
+    int i_max = -1;
+    double fi_max = 0;
+    double min_dist = std::numeric_limits<double>::max();
+    for(unsigned int i = 0; i<points.size(); i++)
+    {
+        double fi = getAngle2Vectors(pj, pjj, pj, points[i]);
 
-    //Find point of CH
-    for(int i = 0; i < points.size(); i++)
-    {
-        double omega = getAngle2Vectors(pj, pjj, pj, points[i]);
-
-        // Actualize maximum.
-    if (omega > om_max)
-    {
-    om_max = omega;
-    i_max = i;
-    }
-    // Colinear points
-    else if ((omega - om_max) < 0.0001)
-    {
-    double d = sqrt((pj.x()-points[i].x())*(pj.x()-points[i].x())+(pj.y()-points[i].y())*(pj.y()-points[i].y()));
-    if (d_min < d)
-    {
-        d_min = d;
-        om_max = omega;
+        if(fi > fi_max)
+        {
         i_max = i;
-    }
-    }
+        fi_max = fi;
+        }
+
+        else if(fabs(fi-fi_max) < EPS)
+        {
+        double dist = getDistance(pj, points[i]);
+        if(min_dist > dist)
+        {
+            min_dist = dist;
+            i_max = i;
+            fi_max = fi;
+        }
+        }
     }
 
-    //Add point to the convex hull
-    ch.push_back(points[i_max]);
+    ch.push_front(points[i_max]);
 
-    //Change index
     pjj = pj;
     pj = points[i_max];
-
-    } while (!(pj == q));
+    }
+    while(!(pj == q));
 
     strictlyConvex(ch);
+
     return ch;
 }
 
@@ -583,4 +575,9 @@ QPolygonF Algorithms::grahamScan(QVector<QPointF> &points)
     strictlyConvex(ch);
     return ch;
 
+}
+
+double Algorithms::getDistance(QPointF &a, QPointF &b)
+{
+    return sqrt((a.x()-b.x())*(a.x()-b.x())+(a.y()-b.y())*(a.y()-b.y()));
 }
