@@ -212,7 +212,7 @@
              <number>10</number>
             </property>
             <property name="maximum">
-             <number>10000</number>
+             <number>1000000</number>
             </property>
             <property name="singleStep">
              <number>10</number>
@@ -243,12 +243,24 @@
               <string>Sweep Line</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Graham Scan</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="btn_gen_rand_points">
             <property name="text">
              <string>Generate points</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QPushButton" name="btn_tst_algorithms">
+            <property name="text">
+             <string>Algorithms Test</string>
             </property>
            </widget>
           </item>

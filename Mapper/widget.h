@@ -38,6 +38,8 @@ private slots:
 
     void on_btn_gen_rand_points_clicked();
 
+    void on_btn_tst_algorithms_clicked();
+
 private:
     Ui::Widget *ui;
 };
