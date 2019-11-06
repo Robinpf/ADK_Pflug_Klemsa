@@ -17,6 +17,10 @@ void Draw::mousePressEvent(QMouseEvent *e)
     case DrawMode::NONE:
         // Do nothing.
         break;
+    case DrawMode::POINTS:
+        // Draw single points.
+        points.push_back(p);
+        break;
     case DrawMode::ANALYZE_POINT:
         // Draw analyze point.
         analyzePoint = p;
@@ -40,12 +44,19 @@ void Draw::paintEvent(QPaintEvent *e)
     qp.begin(this);
 
     // Draw analyze point
-    int ap_r = 10;
-    double ap_p = 1.3;
+    int ap_r = 10; // Analize point radius.
+    int sp_r = 5; // Single point radius.
+    double pp_r = 1.3;
     //Draw point Q
     qp.drawEllipse(analyzePoint.x() - ap_r/2,analyzePoint.y() - ap_r/2, ap_r, ap_r);
-    qp.drawLine(analyzePoint.x()-ap_p*ap_r, analyzePoint.y(), analyzePoint.x()+ap_p*ap_r, analyzePoint.y());
-    qp.drawLine(analyzePoint.x(), analyzePoint.y()-ap_p*ap_r, analyzePoint.x(), analyzePoint.y()+ap_p*ap_r);
+    qp.drawLine(analyzePoint.x()-pp_r*ap_r, analyzePoint.y(), analyzePoint.x()+pp_r*ap_r, analyzePoint.y());
+    qp.drawLine(analyzePoint.x(), analyzePoint.y()-pp_r*ap_r, analyzePoint.x(), analyzePoint.y()+pp_r*ap_r);
+
+    // Draw all points
+    for (int i = 0; i < points.size(); i++)
+    {
+        qp.drawEllipse(points[i].x() - sp_r/2,points[i].y() - sp_r/2, sp_r, sp_r);
+    }
 
     // Draw actual polygon.
     drawPolygon(actualPolygon);
@@ -68,10 +79,23 @@ void Draw::paintEvent(QPaintEvent *e)
         drawBorderPolygon(borderPolygons[i]);
     }
 
+    // Draw convex hull.
+    drawPolygon(convexHull);
+
     qp.end();
 }
 
-void Draw::drawPolygon(QPolygonF polygon)
+void Draw:: clearAll()
+{
+    this->clearHighlitedPolygons();
+    polygons.clear();
+    analyzePoint.setX(-999);analyzePoint.setY(-999);
+    points.clear();
+    convexHull.clear();
+    repaint();
+}
+
+void Draw::drawPolygon(QPolygonF &polygon)
 {
     QPainter qp(this);
     qp.begin(this);
@@ -88,7 +112,24 @@ void Draw::drawPolygon(QPolygonF polygon)
     qp.end();
 }
 
-void Draw::drawFilledPolygon(QPolygonF polygon)
+void Draw::drawConvexHullPolygon(QPolygonF &polygon)
+{
+    QPainter qp(this);
+    qp.begin(this);
+
+    // Draw actual polygon.
+    int apoly_r = 5;
+    for (int i = 0; i < polygon.size(); i++)
+    {
+        qp.drawEllipse(polygon[i].x() - apoly_r/2,polygon[i].y() - apoly_r/2, apoly_r, apoly_r);
+    }
+
+    qp.drawPolygon(polygon);
+
+    qp.end();
+}
+
+void Draw::drawFilledPolygon(QPolygonF &polygon)
 {
     // Start QPainter.
     QPainter qp(this);
@@ -99,7 +140,6 @@ void Draw::drawFilledPolygon(QPolygonF polygon)
     brush.setColor(Qt::red);
     brush.setStyle(Qt::Dense3Pattern);
     QPainterPath painterPath;
-    QVector<QPoint> brushPoly;
 
     painterPath.addPolygon(polygon);
     qp.fillPath(painterPath, brush);
@@ -108,7 +148,7 @@ void Draw::drawFilledPolygon(QPolygonF polygon)
     qp.end();
 }
 
-void Draw::drawBorderPolygon(QPolygonF polygon)
+void Draw::drawBorderPolygon(QPolygonF &polygon)
 {
     // Start QPainter.
     QPainter qp(this);
@@ -119,7 +159,6 @@ void Draw::drawBorderPolygon(QPolygonF polygon)
     brush.setColor(Qt::green);
     brush.setStyle(Qt::Dense3Pattern);
     QPainterPath painterPath;
-    QVector<QPoint> brushPoly;
 
     painterPath.addPolygon(polygon);
     qp.fillPath(painterPath, brush);

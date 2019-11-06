@@ -47,6 +47,12 @@ void Widget::on_btn_drw_point_clicked()
     ui->canvas->saveActualPolygon();
 }
 
+void Widget::on_btn_drw_points_clicked()
+{
+    ui->canvas->setDrawMode(DrawMode::POINTS);
+    ui->canvas->saveActualPolygon();
+}
+
 void Widget::on_btn_drw_polygon_clicked()
 {
     ui->canvas->setDrawMode(DrawMode::POLYGON);
@@ -59,10 +65,7 @@ void Widget::on_btn_anl_polygon_point_clicked()
     polygons = ui->canvas->getPolygons();
     QPointF q = ui->canvas->getAnalyzePoint();
     QPolygonF pol;
-    std::vector<QPointF> polygon;
     int position;
-
-    ///TODO: Odstranit body z vektoru vybarvených a zvýrazněných polygonů
 
     if (ui->cmb_poly_point_alg->currentText() == "Ray Crossing Algorithm")
     {
@@ -107,6 +110,34 @@ void Widget::on_btn_anl_polygon_point_clicked()
     repaint();
 }
 
+void Widget::on_btn_gen_convex_hull_clicked()
+{
+    ui->canvas->clearConvexHullPolygon();
+    QVector<QPointF> points = ui->canvas->points;
+    QElapsedTimer timer;
+    ui->console->moveCursor (QTextCursor::End);
+
+    QString text = ui->cmb_convex_hull_alg->currentText();
+
+    if (text == "Jarvis Scan")
+    {
+        timer.start();
+        ui->canvas->convexHull = Algorithms::jarvisScan(points);
+    }
+    if (text == "Quick Hull")
+    {
+        timer.start();
+        ui->canvas->convexHull = Algorithms::qHull(points);
+    }
+    if (text == "Sweep Line")
+    {
+        timer.start();
+        ui->canvas->convexHull = Algorithms::sweepLine(points);
+    }
+    ui->console->insertPlainText("time for calculate convex hull: " + QString::number(timer.elapsed()) + "milliseconds\n\n");
+
+    repaint();
+}
 
 void Widget::on_btn_gen_rand_polygon_clicked()
 {
@@ -121,4 +152,22 @@ void Widget::on_btn_gen_rand_polygon_clicked()
 void Widget::on_btn_clear_clicked()
 {
     ui->canvas->clearAll();
+}
+
+void Widget::on_btn_gen_rand_points_clicked()
+{
+    int n = ui->spn_rand_points->value();
+    QString shp = ui->cmb_rand_shape->currentText();
+
+    Shape shape = CIRCLE;
+    shape = shp == "Square" ? SQUARE : shape;
+    shape = shp == "Grid" ? GRID : shape;
+    shape = shp == "Raster" ? RASTER : shape;
+
+
+
+    QVector<QPointF> points;
+    points = Algorithms::generateRandomPoints(n,shape);
+    ui->canvas->points = points;
+    repaint();
 }

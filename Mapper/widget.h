@@ -32,6 +32,12 @@ private slots:
 
     void on_btn_clear_clicked();
 
+    void on_btn_drw_points_clicked();
+
+    void on_btn_gen_convex_hull_clicked();
+
+    void on_btn_gen_rand_points_clicked();
+
 private:
     Ui::Widget *ui;
 };

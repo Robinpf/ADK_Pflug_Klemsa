@@ -28,13 +28,21 @@ SOURCES += \
         widget.cpp \
     filereader.cpp \
     draw.cpp \
-    algorithms.cpp
+    algorithms.cpp \
+    sortpointsangleq.cpp \
+    sortbyy.cpp \
+    sortbyx.cpp \
+    sortbyangleasc.cpp
 
 HEADERS += \
         widget.h \
     filereader.h \
     draw.h \
-    algorithms.h
+    algorithms.h \
+    sortpointsangleq.h \
+    sortbyy.h \
+    sortbyx.h \
+    sortbyangleasc.h
 
 FORMS += \
         widget.ui

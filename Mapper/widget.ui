@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>622</width>
-    <height>409</height>
+    <width>630</width>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,16 @@
        <horstretch>5</horstretch>
        <verstretch>5</verstretch>
       </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="console">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -98,6 +108,19 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="btn_drw_points">
+            <property name="text">
+             <string>Points</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">draw_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="btn_drw_polygon">
             <property name="text">
              <string>Polygon</string>
@@ -119,7 +142,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_5">
          <property name="title">
-          <string>Algorithms</string>
+          <string>U1 - Polygon-Point analyze</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
@@ -154,9 +177,88 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>U2 - Convex hull</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="3" column="1">
+           <widget class="QComboBox" name="cmb_rand_shape">
+            <item>
+             <property name="text">
+              <string>Circle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Square</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Grid</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Raster</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QSpinBox" name="spn_rand_points">
+            <property name="minimum">
+             <number>10</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QPushButton" name="btn_gen_convex_hull">
+            <property name="text">
+             <string>Generate  convex hull</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QComboBox" name="cmb_convex_hull_alg">
+            <item>
+             <property name="text">
+              <string>Jarvis Scan</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Quick Hull</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sweep Line</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QPushButton" name="btn_gen_rand_points">
+            <property name="text">
+             <string>Generate points</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="btn_clear">
          <property name="text">
-          <string>Clear</string>
+          <string>Clear all</string>
          </property>
         </widget>
        </item>
@@ -175,66 +277,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>Objects</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>300</width>
-            <height>367</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QGroupBox" name="groupBox">
-             <property name="title">
-              <string>Points</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <widget class="QListWidget" name="pointList"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>Polygons</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QListWidget" name="polygonList"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPlainTextEdit" name="console">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
     </widget>
    </item>
   </layout>

@@ -42,7 +42,6 @@ QVector<QPolygonF> FileReader::polygonsImport()
                 polygon.push_back(p);
                 i = 1;
             }
-            std::cout << x << "   " << y << std::endl;
         }
         // Push back last polygon.
         polygons.push_back(polygon);
