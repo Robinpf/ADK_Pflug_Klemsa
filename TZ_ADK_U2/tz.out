@@ -1,0 +1,32 @@
+\BOOKMARK [1][-]{section.1}{Zad\341n\355 \372lohy}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Bonusov\351 \372lohy}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Obecn\341 formulace a re\235en\355 probl\351mu}{}% 3
+\BOOKMARK [1][-]{section.3}{Aplikovan\351 algoritmy}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Jarvis Scan}{section.3}% 5
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Algoritmus Jarvis Scan}{subsection.3.1}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Quick Hull}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Algoritmus Quick Hull glob\341ln\355 metoda}{subsection.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Sweep line}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Algoritmus Sweep line}{subsection.3.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Graham Scan}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Algoritmus Graham Scan}{subsection.3.4}% 12
+\BOOKMARK [1][-]{section.4}{Bonusov\351 \372lohy}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Konstrukce konvexn\355 ob\341lky metodou Graham Scan}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Konstrukce striktne konvexn\355ch ob\341lek}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Jarvis Scan: existence koline\341rn\355ch bodu v datasetu}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Automatick\351 generov\341n\355 mno\236in bodu}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Vstup dat do aplikace}{}% 18
+\BOOKMARK [1][-]{section.6}{V\375stup aplikace}{}% 19
+\BOOKMARK [1][-]{section.7}{Dokumentace}{}% 20
+\BOOKMARK [2][-]{subsection.7.1}{Tr\355dy}{section.7}% 21
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Algorithms}{subsection.7.1}% 22
+\BOOKMARK [3][-]{subsubsection.7.1.2}{SortbyX}{subsection.7.1}% 23
+\BOOKMARK [3][-]{subsubsection.7.1.3}{SortbyY}{subsection.7.1}% 24
+\BOOKMARK [3][-]{subsubsection.7.1.4}{sortPointsAngleQ}{subsection.7.1}% 25
+\BOOKMARK [1][-]{section.8}{Testov\341n\355}{}% 26
+\BOOKMARK [2][-]{subsection.8.1}{Jarvis Scan}{section.8}% 27
+\BOOKMARK [2][-]{subsection.8.2}{Sweep Line}{section.8}% 28
+\BOOKMARK [2][-]{subsection.8.3}{Quick Hull}{section.8}% 29
+\BOOKMARK [1][-]{section.9}{Z\341ver}{}% 30
+\BOOKMARK [1][-]{section.10}{N\341mety pro vylep\235en\355}{}% 31
+\BOOKMARK [1][-]{section.11}{Reference}{}% 32
