@@ -5,7 +5,7 @@
 
 FileReader::FileReader(std::string fileName)
 {
-    this->fileName = fileName;
+    this->fileName = fileName;ui->canvas->setPolygons(fileReader.polygonsImport());
 }
 
 QVector<QPolygonF> FileReader::polygonsImport()
