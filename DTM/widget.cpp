@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include "algorithms.h"
 #include "triangle.h"
+#include <QFileDialog>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -129,5 +130,14 @@ void Widget::on_pushButton_5_clicked()
 
 void Widget::on_pushButton_6_clicked()
 {
+    std::vector<QPoint3D> points;
+        QSizeF canvas_size = ui->Canvas->size();
+        QString path = QFileDialog::getOpenFileName(this,tr("Select file"),"/","Text file (*.txt);;All files (*.*)");
+        std::string path_utf8 = path.toUtf8().constData();
+
+        Draw::importPoints(path_utf8, points,canvas_size, z_min, z_max);
+
+        ui->Canvas->setPoints(points);
+        ui->Canvas->repaint();
 
 }

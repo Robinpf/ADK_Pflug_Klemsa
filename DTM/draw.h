@@ -34,6 +34,7 @@ public:
     void clearDT(){dt.clear();}
     int getDtSize(){return dt.size();}
     void setDTM(std::vector<Triangle> & dtm_){dtm = dtm_;}
+    static void importPoints(std::string &path, std::vector<QPoint3D> &points,  QSizeF &canvas_size, double &z_min, double &z_max);
 
     AnalyzeType analyzeType = AnalyzeType::SLOPE;
 signals:
