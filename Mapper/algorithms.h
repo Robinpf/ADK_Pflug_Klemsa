@@ -5,7 +5,7 @@
 #include <QPolygonF>
 #include <QtGui>
 
-enum Shape {CIRCLE, SQUARE, RANDOM, RASTER};
+enum Shape {CIRCLE, SQUARE, GRID, RASTER};
 
 class Algorithms
 {
@@ -23,13 +23,13 @@ public:
     static QPolygonF createRandomPolygon();
     static QVector<QPointF> generateRandomPoints(int numberOfPoints, Shape shape);
 
+    static double getDistance(QPointF &a, QPointF &b);
     static QPolygonF strictlyConvex(QPolygonF &ch);
     static QPolygonF jarvisScan(QVector<QPointF> &points);
     static QPolygonF qHull(QVector<QPointF> &points);
     static void qh(int s, int e, QVector<QPointF> &points, QPolygonF &ch);
     static QPolygonF sweepLine(QVector<QPointF> &points);
     static QPolygonF grahamScan(QVector<QPointF> &points);
-    static double getDistance(QPointF &a, QPointF &b);
 };
 
 #endif // ALGORITHMS_H

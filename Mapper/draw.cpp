@@ -17,7 +17,7 @@ void Draw::mousePressEvent(QMouseEvent *e)
     case DrawMode::NONE:
         // Do nothing.
         break;
-    case DrawMode::POINTS:
+    case DrawMode::POINTSD:
         // Draw single points.
         points.push_back(p);
         break;

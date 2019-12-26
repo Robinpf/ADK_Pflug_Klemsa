@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.1}{Zad\341n\355 \372lohy}{}% 1
+\BOOKMARK [1][-]{section.2}{Obecn\341 formulace a re\235en\355 probl\351mu}{}% 2
+\BOOKMARK [1][-]{section.3}{Aplikovan\351 algoritmy}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Winding Algorithm}{section.3}% 4
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Algoritmus winding number}{subsection.3.1}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Ray crossing}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Algoritmus Ray crossing s redukc\355}{subsection.3.2}% 7
+\BOOKMARK [1][-]{section.4}{Vstup dat do aplikace}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Grafick\375 vstup}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Kombinovan\375 vstup}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Form\341t souboru pro import dat}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{V\375stup aplikace}{}% 12
+\BOOKMARK [1][-]{section.6}{Dokumentace}{}% 13
+\BOOKMARK [2][-]{subsection.6.1}{Tr\355dy}{section.6}% 14
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Algorithms}{subsection.6.1}% 15
+\BOOKMARK [3][-]{subsubsection.6.1.2}{Draw}{subsection.6.1}% 16
+\BOOKMARK [3][-]{subsubsection.6.1.3}{FileReader}{subsection.6.1}% 17
+\BOOKMARK [3][-]{subsubsection.6.1.4}{Widget}{subsection.6.1}% 18
+\BOOKMARK [1][-]{section.7}{Re\235en\355 bonusov\375ch \372loh}{}% 19
+\BOOKMARK [2][-]{subsubsection.7.0.1}{O\235etren\355 singul\341rn\355ho pr\355padu u Winding Number Algorithm: bod le\236\355 na hrane polygonu}{section.7}% 20
+\BOOKMARK [3][-]{subsubsection.7.0.2}{Algoritmus pro automatick\351 generov\341n\355 nekonvexn\355ch polygonu}{subsubsection.7.0.1}% 21
+\BOOKMARK [1][-]{section.8}{Z\341ver}{}% 22
+\BOOKMARK [1][-]{section.9}{N\341mety pro vylep\235en\355}{}% 23
+\BOOKMARK [1][-]{section.10}{Reference}{}% 24

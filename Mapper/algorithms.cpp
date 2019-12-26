@@ -17,31 +17,34 @@ Algorithms::Algorithms()
 
 int Algorithms::getPointLinePosition(QPointF &q, QPointF &p1, QPointF &p2)
 {
+    //Point and line position
+    double eps = 1.0e-8;
 
-//Tolerance
-double eps = 1.0e-6;
-//Analyze point and line position
-//1 point in the left half plane
-//0 point in the right half plane
-//-1 point on the line
-double ux = p2.x() - p1.x();
-double uy = p2.y() - p1.y();
+    double ux = p2.x() - p1.x();
+    double uy = p2.y() - p1.y();
+    double vx = q.x() - p1.x();
+    double vy = q.y() - p1.y();
 
-double vx = q.x() - p1.x();
-double vy = q.y() - p1.y();
+    //Determinant
+    double t = (ux * vy - uy * vx);
 
-double t = ux * vy - uy * vx;
+    if(t > eps)
+        return 1;
 
-//Point in the left half plane
-if (t > eps)
-    return 1;
+    if(t < -eps)
+        return 0;
 
-//Point in the right half plane
-if (t < -eps)
-    return 0;
+    double eps2 = 2.0;
+    double dist_qp1 = sqrt((vx*vx)+(vy*vy));
+    double dist_qp2 = sqrt((q.x()-p2.x())*(q.x()-p2.x()) + (q.y()-p2.y())*(q.y()-p2.y()));
+    double dist_p1p2 = sqrt((ux*ux)+(uy*uy));
+    double dist = dist_qp1 + dist_qp2;
 
-//Point on the line
-return -1;
+    if((fabs(dist-dist_p1p2))<=eps2){
+        return -2;
+    }
+
+    return -1;
 }
 
 double Algorithms::getPointLineDistance(QPointF &q, QPointF &p1, QPointF &p2){
@@ -78,67 +81,52 @@ double Algorithms::getAngle2Vectors(QPointF &p1, QPointF &p2, QPointF &p3, QPoin
 
 int Algorithms::positionPointPolygonWinding(QPointF &q, QPolygonF &pol)
 {
-    QPointF p_i1;
-    QPointF p_i2;
-
-    // Analyze Position of the Point and the Polygon
-    double wn = 0.0;
-
-    // Tolerance
-    double eps = 1.0e-6;
-
-    // The size of polygon
     int n = pol.size();
+    double sum_fi=0.0;
+    double eps = 1.0e-10;
+    int k = 0;
 
-    //Boundary number
-    int boundary = 0;
+    for (int i=0; i < n; i++)
+    {
+        if( fabs(q.x()-pol[i].x())<eps && fabs(q.y()-pol[i].y())<eps )
+        {
+            k = -1;
+        }
+        else
+        {
 
-    //Browse all points of polygon
-    for (int i = 0; i < n; i++){
+             double fi = getAngle2Vectors(pol[i], q, pol[(i+1)%n], q);
 
-        p_i1 = pol.at(i);
-        p_i2 = pol.at((i+1)%n);
+             int t = getPointLinePosition(q, pol[i], pol[(i+1)%n]);
 
-        //Measure angle
-        double omega = getAngle2Vectors(p_i1, q, p_i2, q);
+             // q point on the line
+             if(t==-2)
+                 return 1;
 
-        //Get orientation of the point and the polygon edge
-        int orient = getPointLinePosition(q, pol[i], pol[(i+1)%n]);
+             if(t > 0)
+                 sum_fi += fi;
 
-        //Point in the left half plane
-    if (orient == 1){
-            wn += omega;
+             else
+                 sum_fi -= fi;
+        }
     }
 
-        //Point in the right half plane
-    else if (orient == 0){
-            wn -= omega;
-       }
+ if(k==-1)
+ {
+     //Point q on the vertex
+     return 1;
+ }
+ else
+ {
+    if (fabs(fabs(sum_fi)-360)< eps)
+        return 1;
 
-    //Point on an edge
-    else {
-        ++boundary;
-    }
-   }
-
-
-    //Testing position of point on edge
-    if (boundary == 0){
-
-    //point inside polygon
-    if (fabs(fabs(wn) - 2 * M_PI) <= eps)
-       return 1;
-
-    //Point outside polygon
-     else {
+    if (fabs(sum_fi) < eps)
         return 0;
-      }
-    }
 
-    //Point on boundary
-    else {
+    else
         return -1;
-    }
+ }
 }
 
 
@@ -172,22 +160,22 @@ int Algorithms::positionPointPolygonRayCrossing(QPointF &q, QPolygonF &pol)
             double xm = (xir * yiir - xiir * yir)/(yir - yiir);
 
             // Point in the right plane
-        if (xm > eps){
+	    if (xm > eps){
                 k +=1;
-        }
+	    }
 
-        // Point in the left
-        else if(xm < -eps) {
-        k +=0;
-        }
+	    // Point in the left
+	    else if(xm < -eps) {
+		k +=0;
+	    }
 
-        // Point is out of tolerance
-        else {
+	    // Point is out of tolerance
+	    else {
 
-         //Boundary
-         return -1;
-        }
-     }
+		 //Boundary
+		 return -1;
+	    }
+	 }
 
 
         //Assign coordinates
@@ -202,27 +190,27 @@ int Algorithms::positionPointPolygonRayCrossing(QPointF &q, QPolygonF &pol)
 
 QPolygonF Algorithms::createRandomPolygon(){
 
-    //declaration
-    double x = 0;
-    double y = 0;
-    double theta = 0;
-    double r = 0;
+	//declaration
+	double x = 0;
+	double y = 0;
+	double theta = 0;
+	double r = 0;
     QVector<QPointF> randPoints;
 
-    //generate random points in i vertex polygon
-    for(int i = rand()% 20 + 4; i > 0; i--){
-        theta += rand()% (360/i) + 5; //decimal degree
-        theta = theta * (M_PI/180); //radians
-        r = rand()% 349 + 1; // pruvodic
+	//generate random points in i vertex polygon
+	for(int i = rand()% 20 + 4; i > 0; i--){
+		theta += rand()% (360/i) + 5; //decimal degree
+		theta = theta * (M_PI/180); //radians
+		r = rand()% 349 + 1; // pruvodic
 
-        //rendering x,y
+		//rendering x,y
         x = r * sin(theta) + 350;
         y = r * cos(theta) + 250;
         QPointF newPoint(x,y);
 
-        //Beware for duplicates!
-        randPoints.push_back(newPoint);
-    }
+		//Beware for duplicates!
+		randPoints.push_back(newPoint);
+	}
 
     QPolygonF polygon(randPoints);
     return polygon;
@@ -275,13 +263,13 @@ QVector<QPointF> Algorithms::generateRandomPoints(int numberOfPoints, Shape shap
         }
         break;
 
-    case RANDOM:
+    case GRID:
         for (int i = 1; i < numberOfPoints; i++)
         {
             // Create random point
             x = (((double)rand() / RAND_MAX) * (a+n)) - a/2;
             y = (((double)rand() / RAND_MAX) * (a+n)) - a/2;
-/*
+
             if (rand() % 2)
             {
                 x = (((int)x + n/2) / n) * n;
@@ -289,7 +277,7 @@ QVector<QPointF> Algorithms::generateRandomPoints(int numberOfPoints, Shape shap
             {
                 y = (((int)y + n/2) / n) * n;
             }
-*/
+
 
             point.setX(x + center.x() - n);
             point.setY(y + center.y() - n);
@@ -323,17 +311,41 @@ QVector<QPointF> Algorithms::generateRandomPoints(int numberOfPoints, Shape shap
 
 QPolygonF Algorithms::strictlyConvex(QPolygonF &ch)
 {
+    // Delete duplicates
+    int m = ch.size();
+    for (int j = 1; j < m; j++){
+        if (ch[j].x() == ch[(j+1)%m].x() && ch[j].y() == ch[(j+1)%m].y())
+        {
+            ch.remove(j);
+        }
+    }
 
-    //Delete points on the same line
-    for(int i=0; i<(ch.size()-2); i++){
-    if(getPointLinePosition(ch[i+2],ch[i],ch[i+1])==-1){
+    //Collinear control loop
+    int n = ch.size();
+    for (int i = 0; i < n-2; i++)
+    {
+    if (getPointLinePosition(ch[i+2], ch[i], ch[i+1]) == -1)
+    {
         ch.remove(i+1);
         i--;
     }
     }
 
+    // Last and firts point are collinear
+    if (getPointLinePosition(ch[0], ch[ch.size()-2], ch[ch.size()-1]) == -1)
+    {
+        ch.remove(ch.size()-1);
+    }
+
     return ch;
 }
+
+double Algorithms::getDistance(QPointF &a, QPointF &b)
+{
+    return sqrt((a.x()-b.x())*(a.x()-b.x())+(a.y()-b.y())*(a.y()-b.y()));
+}
+
+
 
 QPolygonF Algorithms::jarvisScan(QVector<QPointF> &points)
 {
@@ -344,126 +356,129 @@ QPolygonF Algorithms::jarvisScan(QVector<QPointF> &points)
     std::sort(points.begin(), points.end(), SortbyY());
     QPointF q = points[0];
 
+
     std::sort(points.begin(), points.end(), SortbyX());
     QPointF s = points[0];
 
     if(fabs(s.x()-q.x())< EPS)
-    s.setX(s.x()+100);
+	s.setX(s.x()+100);
 
     QPointF pjj(s.x(), q.y());
     QPointF pj = q;
 
     do
     {
-    int i_max = -1;
-    double fi_max = 0;
-    double min_dist = std::numeric_limits<double>::max();
-    for(unsigned int i = 0; i<points.size(); i++)
-    {
-        double fi = getAngle2Vectors(pj, pjj, pj, points[i]);
+	int i_max = -1;
+	double fi_max = 0;
+	double min_dist = std::numeric_limits<double>::max(); //set min_dist for colinear poins
 
-        if(fi > fi_max)
-        {
-        i_max = i;
-        fi_max = fi;
-        }
+	//Find pi = arg max angle (pi, pj, pjj)
+	for(unsigned int i = 0; i<points.size(); i++)
+	{
+	    //get angle between 2 segments
+	    double fi = getAngle2Vectors(pj, pjj, pj, points[i]);
 
-        else if(fabs(fi-fi_max) < EPS)
-        {
-        double dist = getDistance(pj, points[i]);
-        if(min_dist > dist)
-        {
-            min_dist = dist;
-            i_max = i;
-            fi_max = fi;
-        }
-        }
-    }
+	    //find maximum
+	    if(fi > fi_max)
+	    {
+		i_max = i;
+		fi_max = fi;
+	    }
 
-    ch.push_front(points[i_max]);
+	    //in case of colinear points, get one, that is closest to point pj
+	    else if(fabs(fi-fi_max) < EPS)
+	    {
+		double dist = getDistance(pj, points[i]);
+		if(min_dist > dist)
+		{
+		    min_dist = dist;
+		    i_max = i;
+		    fi_max = fi;
+		}
+	    }
+	}
 
-    pjj = pj;
-    pj = points[i_max];
+	//add the next point to convex hull
+	ch.push_front(points[i_max]);
+
+	//assign convex hull vertices
+	pjj = pj;
+	pj = points[i_max];
     }
     while(!(pj == q));
 
-    strictlyConvex(ch);
-
     return ch;
 }
+
 
 QPolygonF Algorithms::qHull(QVector<QPointF> &points)
 {
-
+    //Convex Hull by quick hull method
     QPolygonF ch;
     QVector<QPointF> upoints, lpoints;
 
-
+    // Sort by X.
     std::sort(points.begin(), points.end(), SortbyX());
     QPointF q1 = points[0];
-    QPointF q3 = points[points.size()-1];
+    QPointF q3 = points.back();
 
-
+    //Add q1, q3 to upoints, lpoints
     upoints.push_back(q1);
     upoints.push_back(q3);
+
     lpoints.push_back(q1);
     lpoints.push_back(q3);
 
+    // Split to upoints / lpoints
+    for(unsigned int i=0; i < points.size();i++){
 
-    for(unsigned int i = 0; i < points.size(); i++)
-    {
+        //Add to the upper part
+        if(getPointLinePosition(points[i], q1, q3) == 1)
+            upoints.push_back(points[i]);
 
-    if(getPointLinePosition(points[i], q1, q3) == 1)
-    {
-        upoints.push_back(points[i]);
+        //Add to the lower part
+        else if (getPointLinePosition(points[i], q1, q3) == 0)
+            lpoints.push_back(points[i]);
     }
 
-
-    else if(getPointLinePosition(points[i], q1, q3) == 0)
-    {
-        lpoints.push_back(points[i]);
-    }
-    }
-
-
+    //Call recursive function
     ch.push_back(q3);
-
-
     qh(1, 0, upoints, ch);
-
     ch.push_back(q1);
-
     qh(0, 1, lpoints, ch);
 
+    strictlyConvex(ch);
     return ch;
 }
 
-void Algorithms::qh (int s, int e, QVector<QPointF> &points, QPolygonF &ch)
-{
+void Algorithms::qh(int s, int e, QVector<QPointF> &points, QPolygonF &ch){
 
+    //Recursive procedure
     int i_max = -1;
-    double d_max = -1;
+    double d_max = 0;
 
-    for(unsigned int i = 2; i < points.size(); i++)
+    // Browse all points
+    for (int i = 2; i < points.size(); i++)
     {
-    if(getPointLinePosition(points[i], points[s], points[e]) == 0)
-    {
-        double d = getPointLineDistance(points[i], points[s], points[e]);
-
-        if(d > d_max)
+       // Is the point in the right half plane
+        if (getPointLinePosition(points[i], points[s], points[e]) == 0)
         {
-        d_max = d;
-        i_max = i;
+            double d = getPointLineDistance(points[i], points[s], points[e]);
+
+            //Actualization of d_max
+            if(d > d_max){
+                d_max = d;
+                i_max = i;
+            }
         }
     }
-    }
-    if(i_max > -1)
+
+    //Suitable point has been found
+    if(i_max != -1)
     {
-    qh(s, i_max, points, ch);
-
-    ch.push_back(points[i_max]);
-
-    qh(i_max, e, points, ch);
+        qh(s, i_max, points, ch);
+        ch.push_back(points[i_max]);
+        qh(i_max, e, points, ch);
     }
 
 }
@@ -471,77 +486,82 @@ void Algorithms::qh (int s, int e, QVector<QPointF> &points, QPolygonF &ch)
 
 QPolygonF Algorithms::sweepLine(QVector<QPointF> &points)
 {
+    //Increment method, sweep line
     QPolygonF ch;
 
-    std::sort(points.begin(), points.end(), SortbyX());
-
-    std::vector<QPointF> pointsWithRemovedDuplicit;
-    for(unsigned int i =0; i<points.size() - 1; i++){
-    if((points[i].x()!=points[i+1].x()) || (points[i].y()!=points[i+1].y())  ){
-        pointsWithRemovedDuplicit.push_back(points[i]);
-    }
-    }
-    pointsWithRemovedDuplicit.push_back(points[points.size() - 1]);
-
-    points.clear();
- for (int i = 0; i < pointsWithRemovedDuplicit.size(); i++)
- {
-     points.push_back(pointsWithRemovedDuplicit[i]);
- }
-
-
     int m = points.size();
-    std::vector<int> p(m), n(m);
 
+    //List of predecessors
+    std::vector<int> p(m);
+
+    //List of successors
+    std::vector<int> n(m);
+
+    //Sort points by X
+    std::sort(points.begin(),points.end(),SortbyX());
+
+    // Create initial aproximation
     n[0] = 1;
     n[1] = 0;
-
     p[0] = 1;
     p[1] = 0;
 
-    for(unsigned int i = 2; i < points.size(); i++)
+    // Process all points according to x coordinates
+    for (int i = 2; i < m; i++)
     {
+        //Point i lies in the upper half plane
+        if(points[i].y() > points[i-1].y()){
+            //Link i and its predecessor and successor
+            p[i] = i-1;
+            n[i] = n[i-1];
+        }
 
-    if(getPointLinePosition(points[i], points[p[i-1]], points[i-1]) == 1)
-    {
-        p[i] = i-1;
-        n[i] = n[i-1];
+        //Point i lies in the lower half plane
+        else
+        {
+            //Link i and its predecessor and successor
+            p[i] = p[i-1];
+            n[i] = i - 1;
+        }
+
+        //Link predecessor and successor and i
+        p[n[i]] = i;
+        n[p[i]] = i;
+
+        //Fix upper tangent
+        while (getPointLinePosition(points[n[n[i]]], points[i], points[n[i]]) == 0)
+        {
+            //Change predecessor and successor
+            p[n[n[i]]] = i;
+            n[i] = n[n[i]];
+        }
+
+        //Fix lower tangent
+        while (getPointLinePosition(points[p[p[i]]], points[i], points[p[i]]) == 1)
+        {
+            //Change predecessor and successor
+            n[p[p[i]]] = i;
+            p[i] = p[p[i]];
+        }
     }
-    else
-    {
-        p[i] = p[i-1];
-        n[i] = i-1;
-    }
 
-    n[p[i]] = i;
-    p[n[i]] = i;
-
-    while(getPointLinePosition(points[n[n[i]]], points[i], points[n[i]]) == 0)
-    {
-        p[n[n[i]]] = i;
-        n[i] = n[n[i]];
-
-    }
-
-    while(getPointLinePosition(points[p[p[i]]], points[i], points[p[i]]) == 1)
-    {
-        n[p[p[i]]] = i;
-        p[i] = p[p[i]];
-    }
-    }
-
+    //Convert successors to ch
     ch.push_back(points[0]);
 
-    unsigned int index = n[0];
+    //Second point of CH
+    int index = n[0];
 
+    //Repeat until the first point is found
     while(index != 0)
     {
-    ch.push_back(points[index]);
-    index = n[index];
+        //Add to the polygon
+        ch.push_back(points[index]);
+
+        //Find its successor
+        index = n[index];
     }
 
     strictlyConvex(ch);
-
     return ch;
 }
 
@@ -575,9 +595,4 @@ QPolygonF Algorithms::grahamScan(QVector<QPointF> &points)
     strictlyConvex(ch);
     return ch;
 
-}
-
-double Algorithms::getDistance(QPointF &a, QPointF &b)
-{
-    return sqrt((a.x()-b.x())*(a.x()-b.x())+(a.y()-b.y())*(a.y()-b.y()));
 }
