@@ -196,7 +196,7 @@ Grafickým vstupem, kdy jsou snímány souřadnice bodů kurzorem myši v grafic
 \\
 Kombinovaným vstupem, kde jsou souřadnice polygonů načítány z textového souboru v předepsaném formátu a souřadnice analyzovaného bodu jsou snímány kurzorem myši v grafickém rozhraní aplikace.\\
 \\
-Třetím způsobem vstupu dat do aplikace, konkrétně polygonu, je automatická generace. Tento způsob vstupu je obsahem bonusových úloh. Tlačítkem \textit{Generate Random Polygon} lze vygenerovat v grafickém okně polygon o náhodném počtu vrcholů od 4 do 20. Vstup tímto způsobem nefunguje v aplikace správně a pro především větší počet vrcholů, generuje topologicky nekorektní polygony.
+Třetím způsobem vstupu dat do aplikace, konkrétně polygonu, je automatická generace. Tento způsob vstupu je obsahem bonusových úloh. Tlačítkem \textit{Generate Random Polygon} lze vygenerovat v grafickém okně polygon o náhodném počtu vrcholů od 4 do 20.
 
 \subsection{Grafický vstup}
 Grafický vstup vrcholů polygonu je aktivován tlačítkem Polygon v sekci Draw Action. Pro ukončení snímání aktuálního polygonu je třeba aktivovat tlačítko None. Poté lze opět po aktivaci tlačítka Polygon snímat a vykreslovat nový polygon nebo aktivací tlačítka Analyze point snímat souřadnice analyzovaného bodu.
@@ -298,15 +298,13 @@ Z bonusových úloh bylo řešeno zadání: \textit{Algoritmus pro automatické 
 Tento singulární případ byl ošetřen při určování pozice bodu vůči přímce (funkce: \textit{getPointLinePosition}). Funkce vyhodnotí jako kolineární bod \textit{q}  takový, který má součet vzdáleností počátečního bodu úsečky do \textit{q} (p1,q) a \textit{q} do koncového bodu úsečky (q,p2) krajně blízký k samotné délce úsečky (p1,p2).
 
 \subsubsection{Algoritmus pro automatické generování nekonvexních polygonů}
-Automatické generování nekonvexních, topologicky korektních polygonů se nepodařilo správně naimplementovat (viz \textit{Náměty pro vylepšení}). 
+Způsob vstupu polygonů metodou generování náhodných nekonvexních polygonů je naimplementován tak, že generuje náhodný polygon o čtyřech až dvaceti vrcholech. Algoritmus nejprve náhodně vygeneruje počet vrcholů polygonu. V dalším kroku generuje algoritmus vrcholy polygonu. Tvorba vrcholů je naprogramována tak, že se vygeneruje od 3 do 19 vrcholů a jako poslední je použit střed polygonu, pro dosaženo nekonvexnosti. Pro vygenerované body polygonu je použit cyklus, který vrcholy seřadí podle velikosti směrníku. Směrník je dán prvním vrcholem, středem a následujícím vrcholem polygonu, nakonec opravený v závislosti na kvadrantu. Takto vygenerovaný polygon se seřazenými vrcholy je doplněný o středový bod a funkcí navracen.
 
 \section{Závěr}
 Pro předpřipravená data aplikace funguje bez problému, problematické situace algoritmu podle
 zadání byly ošetřeny. Aplikace umožňuje několik metod vstupů dat a pro povinnou část zadání vyhodnocuje analýzu správně.
 
 \section{Náměty pro vylepšení} 
-Algoritmus pro automatické generování polygonů se nepodařilo správně naimplementovat. Algoritmus nevytváří vždy topologicky korektní polygony.\\
-\\
 Aplikacke by byla o mnoho všestrannější, pokud by při importu neupravených polygonů z textového souboru, automaticky redukovala souřadnice vrcholů tak, aby je bylo možné zobrazit v grafickém okně. Tento problém aplikace neřeší a proto je nutné před importem souřadnice upravit jiným způsobem.
 
 \section{Reference}

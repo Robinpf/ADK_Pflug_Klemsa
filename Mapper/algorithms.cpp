@@ -190,31 +190,90 @@ int Algorithms::positionPointPolygonRayCrossing(QPointF &q, QPolygonF &pol)
 
 QPolygonF Algorithms::createRandomPolygon(){
 
-	//declaration
-	double x = 0;
-	double y = 0;
-	double theta = 0;
-	double r = 0;
-    QVector<QPointF> randPoints;
+    int n_points = (rand()% 20 + 4) -1;
 
-	//generate random points in i vertex polygon
-	for(int i = rand()% 20 + 4; i > 0; i--){
-		theta += rand()% (360/i) + 5; //decimal degree
-		theta = theta * (M_PI/180); //radians
-		r = rand()% 349 + 1; // pruvodic
+    QPolygonF poly;
 
-		//rendering x,y
-        x = r * sin(theta) + 350;
-        y = r * cos(theta) + 250;
-        QPointF newPoint(x,y);
+    for(int i = 0; i < n_points; i++)
+    {
+        QPointF point;
+        point.setX(rand()%500);
+        point.setY(rand()%500);
+        poly.push_back(point);
+    }
 
-		//Beware for duplicates!
-		randPoints.push_back(newPoint);
-	}
+    QPolygonF polygon;
 
-    QPolygonF polygon(randPoints);
-    return polygon;
-}
+    while(!poly.empty())
+    {
+        int indexMin = 0;
+         for(int i = 1; i < poly.size(); i++)
+            {
+         if(poly.at(indexMin).y() > poly.at(i).y()){
+         indexMin = i;
+             }
+         }
+            polygon<<(poly.takeAt(indexMin));
+        }
+
+        QPointF center;
+
+        double prumerX = 0;
+        double prumerY = 0;
+
+        for(int i = 0; i < n_points; i++){
+            prumerX = prumerX + polygon.at(i).x();
+            prumerY = prumerY + polygon.at(i).y();
+        }
+
+        center.setX(prumerX/n_points);
+        center.setY(prumerY/n_points);
+
+        QPolygonF polygon2;
+
+        while(!polygon.empty()){
+
+            int indMin = 0;
+            double uhelMin = 360;
+            double uhel = 0;
+
+             for(int i = 0; i < polygon.size(); i++) {
+                double smernik = atan(fabs((polygon[i].x()-center.x()))/fabs(polygon[i].y()-center.y()));
+
+
+                // Check the quadrant and fix the angel
+                if((polygon[i].x()-center.x())<0 && (polygon[i].y()-center.y())>0){
+                    uhel = smernik;
+                }
+
+                if((polygon[i].x()-center.x())<0 && (polygon[i].y()-center.y())<0){
+                    uhel = 180-smernik;
+                }
+
+                if((polygon[i].x()-center.x())>0 && (polygon[i].y()-center.y())<0){
+                    uhel = 180+smernik;
+                }
+
+                if((polygon[i].x()-center.x())>0 && (polygon[i].y()-center.y())>0){
+                    uhel = 360-smernik;
+                }
+
+                // find the smallest so the angels would be in clockwise and final polygon would be topological correct
+                if(uhel<uhelMin){
+                    uhelMin = uhel;
+                    indMin = i;
+                }
+            }
+
+            // Delete minimum and add it to another polygon so you can count with the rest
+            polygon2<<(polygon.takeAt(indMin));
+        }
+
+        polygon2<<center;
+
+        return polygon2;
+    }
+
 
 QVector<QPointF> Algorithms::generateRandomPoints(int numberOfPoints, Shape shape)
 {
