@@ -542,8 +542,13 @@ Třetí množina použita pro testování dat obsahovala 187 bodů. V terénu se
 \section{Závěr}
 Aplikace vytváří a analyzuje digitální model povrchu vytvořený Delaunay triangulací. Analyzován je sklon a azimut terénu (trojúhelníků). Aplikace dále vykresluje vrstevnice v zadaném intervalu a lze v ní generovat barevnou hypsometrii. \\
 \\
+Delaunay triangulace pro území s nevýraznými terénními anomáliemi funguje přijatelně. Problém zde ovšem nastává v případech, kdy neexistuje jednoznačné řešení (body na mřížce apod.).\\
+\\
+Analýza sklonu i azimutu terénu selhává pro rovinná území (dále např. vodní plochy apod.). Tento nedostatek je způsoben zaokrouhlením, kde takto způsobené chyby zkreslují výsledek. Uživatel pak může nabýt nejistoty, zda je terén opravdu rovinný.\\
+\\
+Tvorba vrstevnic je v aplikaci realizována lineární interpolací, ve skutečnosti však vrstevnice mají kontinuální průběh křivek. Pro lepší přiblížení se skutečným vrstevnicím, by bylo pro téměř veškeré terénní útvary vhodnější použít morfologickou interpolaci. \\
+\\
 Do aplikace lze nahravát i větší množiny bodů v tetovém formátu bez potřeby větších úprav. Proto lze aplikaci využít na modelaci a následnou analýzu naměřených hodnot rovinných území například metodou GNSS.
-
 \section{Náměty pro vylepšení} 
 Aplikace, konkrétně Delaunay triangulace, obecně selhává u bodů vytvářejících struktůru mřížky. Dále také selhává u určitých teréních tvarů (hrana, propast). Jako řešení těchto problémů se využívá povinných hran, které ovšem v aplikaci definovat nelze.\\
 \\
