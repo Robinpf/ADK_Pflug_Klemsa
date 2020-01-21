@@ -164,6 +164,10 @@ std::vector<Edge> Algorithms::booleanOperations(std::vector<QPointFB> &polygonA,
     if (operation == Union){
         selectEdges(polygonA, Outer, result);
         selectEdges(polygonB, Outer, result);
+
+        //Singular edges: always
+        selectEdges(polygonA, On, result);
+        selectEdges(polygonB, On, result);
     }
 
     //Intersect
@@ -176,6 +180,10 @@ std::vector<Edge> Algorithms::booleanOperations(std::vector<QPointFB> &polygonA,
     else if(operation == DifferenceAB){
         selectEdges(polygonA, Outer, result);
         selectEdges(polygonB, Inner, result);
+
+        //Singular edges: always
+        selectEdges(polygonA, On, result);
+        selectEdges(polygonB, On, result);
     }
 
     //Difference B - A
@@ -183,11 +191,12 @@ std::vector<Edge> Algorithms::booleanOperations(std::vector<QPointFB> &polygonA,
     {
         selectEdges(polygonA, Inner, result);
         selectEdges(polygonB, Outer, result);
+
+        //Singular edges: always
+        selectEdges(polygonA, On, result);
+        selectEdges(polygonB, On, result);
     }
 
-    //Singular edges: always
-    selectEdges(polygonA, On, result);
-    selectEdges(polygonB, On, result);
 
     return result;
 }
@@ -281,6 +290,7 @@ void Algorithms::setPositions(std::vector<QPointFB> &pa, std::vector<QPointFB> &
 void Algorithms::selectEdges(std::vector<QPointFB> &pol, TPointPolygonPosition position, std::vector<Edge> &edges)
 {
     //Select edges according to position
+
     for(int i = 0; i < pol.size(); i++)
     {
         //Apropriate edge found
@@ -290,5 +300,9 @@ void Algorithms::selectEdges(std::vector<QPointFB> &pol, TPointPolygonPosition p
             Edge e (pol[i], pol[(i+1)%pol.size()]);
             edges.push_back(e);
         }
+        }
+    if (edges.size() < 0){
+        edges.clear();
     }
-}
+        }
+
