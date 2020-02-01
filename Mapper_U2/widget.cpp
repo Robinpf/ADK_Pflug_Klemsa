@@ -27,7 +27,7 @@ void Widget::on_btn_drw_none_clicked()
 
 void Widget::on_btn_drw_points_clicked()
 {
-    ui->canvas->setDrawMode(DrawMode::POINTS);
+    ui->canvas->setDrawMode(DrawMode::P0OINTS);
     ui->canvas->saveActualPolygon();
 }
 

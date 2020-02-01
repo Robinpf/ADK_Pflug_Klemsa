@@ -5,7 +5,7 @@
 #include <QtGui>
 #include <vector>
 
-enum DrawMode {NONE, POINTS, POLYGON};
+enum DrawMode {NONE, P0OINTS, POLYGON};
 
 class Draw : public QWidget
 {
