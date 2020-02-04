@@ -35,44 +35,16 @@ void Draw::mousePressEvent(QMouseEvent *e)
 }
 
 void Draw::paintEvent(QPaintEvent *e)
+
 {
     QPainter qp(this);
     qp.begin(this);
-
-    // Draw analyze point
-    int ap_r = 10; // Analize point radius.
-    int sp_r = 5; // Single point radius.
-    double pp_r = 1.3;
-    //Draw point Q
-    qp.drawEllipse(analyzePoint.x() - ap_r/2,analyzePoint.y() - ap_r/2, ap_r, ap_r);
-    qp.drawLine(analyzePoint.x()-pp_r*ap_r, analyzePoint.y(), analyzePoint.x()+pp_r*ap_r, analyzePoint.y());
-    qp.drawLine(analyzePoint.x(), analyzePoint.y()-pp_r*ap_r, analyzePoint.x(), analyzePoint.y()+pp_r*ap_r);
+    double sp_r = 5.0;
 
     // Draw all points
     for (int i = 0; i < points.size(); i++)
     {
-        qp.drawEllipse(points[i].x() - sp_r/2,points[i].y() - sp_r/2, sp_r, sp_r);
-    }
-
-    // Draw actual polygon.
-    drawPolygon(actualPolygon);
-
-    // Draw all poly
-    for (int i = 0; i < polygons.size(); i++)
-    {
-        drawPolygon(polygons[i]);
-    }
-
-    // Draw all poly filled.
-    for (int i = 0; i < filledPolygons.size(); i++)
-    {
-        drawFilledPolygon(filledPolygons[i]);
-    }
-
-    // Draw highlited polygons.
-    for (int i = 0; i < borderPolygons.size(); i++)
-    {
-        drawBorderPolygon(borderPolygons[i]);
+        qp.drawEllipse(points[i].x() - sp_r/2,points[i].y() - sp_r/2, sp_r, sp_r);        
     }
 
     // Draw convex hull.
@@ -95,6 +67,9 @@ void Draw::drawPolygon(QPolygonF &polygon)
 {
     QPainter qp(this);
     qp.begin(this);
+    QColor col;
+    col = QColor(255,0,0);
+    qp.setPen(col);
 
     // Draw actual polygon.
     int apoly_r = 5;

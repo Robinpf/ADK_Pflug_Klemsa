@@ -19,12 +19,6 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::on_btn_drw_none_clicked()
-{
-    ui->canvas->setDrawMode(DrawMode::NONE);
-    ui->canvas->saveActualPolygon();
-}
-
 void Widget::on_btn_drw_points_clicked()
 {
     ui->canvas->setDrawMode(DrawMode::P0OINTS);
