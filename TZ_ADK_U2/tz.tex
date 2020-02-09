@@ -340,6 +340,12 @@ Pro každou množinu bodů bylo provedeno 10 testů, výsledný čas uvedený v 
 
 \subsection{Jarvis Scan}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{data_jarvis_scan.png}
+	\caption{Testování časové náročnosti Jarvis Scan}
+\end{figure}
+
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|r|r|r|r|}
@@ -360,8 +366,19 @@ Pro každou množinu bodů bylo provedeno 10 testů, výsledný čas uvedený v 
 		\caption{Jarvis Scan}
 \end{table}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figure_jarvis_scan.png}
+	\caption{Testování časové náročnosti Jarvis Scan - graf}
+\end{figure}
 
 \subsection{Sweep Line}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{data_sweep_line.png}
+	\caption{Testování časové náročnosti Sweep Line}
+\end{figure}
 
 \begin{table}[h!]
 	\centering
@@ -383,9 +400,21 @@ Pro každou množinu bodů bylo provedeno 10 testů, výsledný čas uvedený v 
 		\caption{Sweep Line}
 \end{table}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figure_sweep_line.png}
+	\caption{Testování časové náročnosti Sweep Line - graf}
+\end{figure}
+
 \clearpage
 
 \subsection{Quick Hull}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{data_quick_hull.png}
+	\caption{Testování časové náročnosti Quick Hull}
+\end{figure}
 
 \begin{table}[h!]
 	\centering
@@ -406,6 +435,12 @@ Pro každou množinu bodů bylo provedeno 10 testů, výsledný čas uvedený v 
 	\end{tabular}
 		\caption{Quick Hull}
 \end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figure_quick_hull.png}
+	\caption{Testování časové náročnosti Quick Hull - graf}
+\end{figure}
 
 \section{Závěr}
 Pro tvorbu konvexních obálek byly vytvořeny tři základní metody (Jarvis Scan, Quick Hull, Sweep Line) a jedna bonusová (Graham Scan). Pro nízký počet vstupních bodů fungují všechny algoritmy bez problému. Problémové situace jsou z velké části ošetřeny (duplicitní body apod.). Pro větší množinu vstupních bodů se bez problému podařilo tvořit konvexní obálku pouze metodou Sweep Line. Metoda Jarvis Scan pro náhodně generované body na kružnici v počtu nad 100000 "běží" velmi dlouho, problém se nepodařilo odhalit. Metoda Quick Hull je ze své podstaty nevhodná pro tvorbu konvexní obálky s body na kružnici. Časová náročnost algoritmů pro zadané množiny bodů jsou obsahem předchozí kapitoly Testování. Algoritmus Graham Scan pro malé množství bodů funguje bezchybně, ovšem pro vygenerované větší množství bodů také kolabuje. Tato chyba je nejspíše důsledkem složitosti funkce pro řazení bodů podle úhlu.
