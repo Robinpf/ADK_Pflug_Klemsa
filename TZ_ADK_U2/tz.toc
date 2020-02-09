@@ -1,33 +1,33 @@
-\select@language {czech}
-\contentsline {section}{\numberline {1}Zad\IeC {\'a}n\IeC {\'\i } \IeC {\'u}lohy}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Bonusov\IeC {\'e} \IeC {\'u}lohy}{2}{subsection.1.1}
-\contentsline {section}{\numberline {2}Obecn\IeC {\'a} formulace a \IeC {\v r}e\IeC {\v s}en\IeC {\'\i } probl\IeC {\'e}mu}{3}{section.2}
-\contentsline {section}{\numberline {3}Aplikovan\IeC {\'e} algoritmy}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}Jarvis Scan}{3}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Algoritmus Jarvis Scan}{4}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Quick Hull}{5}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Algoritmus Quick Hull glob\IeC {\'a}ln\IeC {\'\i } metoda}{6}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Sweep line}{7}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Algoritmus Sweep line}{8}{subsubsection.3.3.1}
-\contentsline {subsection}{\numberline {3.4}Graham Scan}{9}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Algoritmus Graham Scan}{9}{subsubsection.3.4.1}
-\contentsline {section}{\numberline {4}Bonusov\IeC {\'e} \IeC {\'u}lohy}{10}{section.4}
-\contentsline {subsection}{\numberline {4.1}Konstrukce konvexn\IeC {\'\i } ob\IeC {\'a}lky metodou Graham Scan}{10}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Konstrukce striktn\IeC {\v e} konvexn\IeC {\'\i }ch ob\IeC {\'a}lek}{10}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Jarvis Scan: existence koline\IeC {\'a}rn\IeC {\'\i }ch bod\IeC {\r u} v datasetu}{10}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Automatick\IeC {\'e} generov\IeC {\'a}n\IeC {\'\i } mno\IeC {\v z}in bod\IeC {\r u}}{10}{subsection.4.4}
-\contentsline {section}{\numberline {5}Vstup dat do aplikace}{10}{section.5}
-\contentsline {section}{\numberline {6}V\IeC {\'y}stup aplikace}{10}{section.6}
-\contentsline {section}{\numberline {7}Dokumentace}{11}{section.7}
-\contentsline {subsection}{\numberline {7.1}T\IeC {\v r}\IeC {\'\i }dy}{11}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Algorithms}{11}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}SortbyX}{12}{subsubsection.7.1.2}
-\contentsline {subsubsection}{\numberline {7.1.3}SortbyY}{12}{subsubsection.7.1.3}
-\contentsline {subsubsection}{\numberline {7.1.4}sortPointsAngleQ}{12}{subsubsection.7.1.4}
-\contentsline {section}{\numberline {8}Testov\IeC {\'a}n\IeC {\'\i }}{13}{section.8}
-\contentsline {subsection}{\numberline {8.1}Jarvis Scan}{13}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Sweep Line}{13}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Quick Hull}{14}{subsection.8.3}
-\contentsline {section}{\numberline {9}Z\IeC {\'a}v\IeC {\v e}r}{14}{section.9}
-\contentsline {section}{\numberline {10}N\IeC {\'a}m\IeC {\v e}ty pro vylep\IeC {\v s}en\IeC {\'\i }}{14}{section.10}
-\contentsline {section}{\numberline {11}Reference}{14}{section.11}
+\babel@toc {czech}{}
+\contentsline {section}{\numberline {1}Zadání úlohy}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Bonusové úlohy}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Obecná formulace a řešení problému}{3}{section.2}%
+\contentsline {section}{\numberline {3}Aplikované algoritmy}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Jarvis Scan}{3}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Algoritmus Jarvis Scan}{4}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Quick Hull}{5}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Algoritmus Quick Hull globální metoda}{6}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Sweep line}{7}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Algoritmus Sweep line}{8}{subsubsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.4}Graham Scan}{9}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Algoritmus Graham Scan}{9}{subsubsection.3.4.1}%
+\contentsline {section}{\numberline {4}Bonusové úlohy}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Konstrukce konvexní obálky metodou Graham Scan}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Konstrukce striktně konvexních obálek}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Jarvis Scan: existence kolineárních bodů v datasetu}{10}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Automatické generování množin bodů}{10}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Vstup dat do aplikace}{10}{section.5}%
+\contentsline {section}{\numberline {6}Výstup aplikace}{10}{section.6}%
+\contentsline {section}{\numberline {7}Dokumentace}{11}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Třídy}{11}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Algorithms}{11}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}SortbyX}{12}{subsubsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.3}SortbyY}{12}{subsubsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.4}sortPointsAngleQ}{12}{subsubsection.7.1.4}%
+\contentsline {section}{\numberline {8}Testování}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Jarvis Scan}{13}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Sweep Line}{14}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Quick Hull}{16}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Závěr}{18}{section.9}%
+\contentsline {section}{\numberline {10}Náměty pro vylepšení}{18}{section.10}%
+\contentsline {section}{\numberline {11}Reference}{18}{section.11}%
