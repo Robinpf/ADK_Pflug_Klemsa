@@ -247,12 +247,54 @@ Pokud bod leží vpravo od linie, je poslední bod CH odebrán a cyklus se opaku
 \subsection{Konstrukce striktně konvexních obálek}
 Striktně konvexní obálky jsou takové, že po sobě následující 3 body neleží na stejné přímce. Striktně konvexní obálky byly tvořeny ve funkci \textit{strictlyConvex}. Tato funkce příjmá na vstupu klasickou konvexní obálku ve formě polygonu. Z polygonu jsou nejprve odstraňovány duplicitní body. Poté je kontrolováno, zda tři po sobě jdoucí body neleží na stejné přímce. Pokud ano, prostřední bod je odstraněn z konvexní obálky.
 
+\begin{enumerate}
+\item $ for(int i=0; i<(ch.size()-2); i++){$
+\item $     if(getPointLinePosition(ch[i+2],ch[i],ch[i+1])==-1){$
+\item $         ch.remove(i+1);$
+\item $         i--;} $
+\end{enumerate}
+
 \subsection{Jarvis Scan: existence kolineárních bodů v datasetu}
 Pokud vstupní množina bodů obsahuje kolineární body, mohla by nastat situace kdy bod \textit{k} má stejný úhel jako jiný bod \textit{l} vzhledem ke stejné přímce $\angle (p_j-1, p_j, p_k)=(p_j-1, p_j, p_l)$. Pro ošetření tohoto případu byla přidána podmínka pro stejné úhly, která do konvexní obálky přidá z takovéto dvojice bodů ten, který je od bodu $p_j$ vzdálenější. 
 
 \subsection{Automatické generování množin bodů}
 
 Uživetal ve spodní části ovládacího panelu má možnost generovat náhodně body. V rozbalovacím seznamu může vybrat z položek Circle, Square, Random a Raster a ve spinboxu může zvolit počet generovaných bodů od 10 do 1000000. Tlačítkem generate points se body přidají do Okna.
+
+Circle
+\begin{enumerate}
+\item $  pi = ((double)rand() / RAND_MAX) * 2 * M_PI; $
+\item $              point.setX(center.x() + sin(pi) * r);$
+\item $              point.setY(center.y() + cos(pi) * r);$
+\item $              points.push_back(point);$
+\end{enumerate}
+
+Square
+\begin{enumerate}
+\item $x = (((double)rand() / RAND_MAX) * a) - a/2;$
+\item $            y = (((double)rand() / RAND_MAX) * a) - a/2;$
+\item $            point.setX(center.x() + x);$
+\item $            point.setY(center.y() + y);$
+\item $            if (rand() % 2) {$
+\item $                x = rand() % 2 ? center.x() - a/2 : center.x() + a/2;$
+\item $                point.setX(x);$
+\item $            } else {$
+\item $                y = rand() % 2 ? center.y() - a/2 : center.y() + a/2;$
+\item $                point.setY(y);$
+\item $            }$
+\item $            points.push_back(point);$
+\end{enumerate}
+
+Raster
+\begin{enumerate}
+\item $x = (((double)rand() / RAND_MAX) * (a+n)) - a/2;$
+\item $            y = (((double)rand() / RAND_MAX) * (a+n)) - a/2;$
+\item $            x = (((int)x + n/2) / n) * n;$
+\item $            y = (((int)y + n/2) / n) * n;$
+\item $            point.setX(x + center.x() - n);$
+\item $            point.setY(y + center.y() - n);$
+\item $            points.push_back(point);$
+\end{enumerate}
 
 \section{Vstup dat do aplikace}
 Vstup dat v aplikaci lze realizovat dvěma způsoby. Uživatel sám vkládá body do grafického okna za pomoci kurzoru myši nebo vygeneruje náhodné body funkcemi z kapitoly \textit{Bonusové úlohy - Automatické generování množin bodů}.
