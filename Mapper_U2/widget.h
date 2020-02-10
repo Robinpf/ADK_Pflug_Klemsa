@@ -18,7 +18,7 @@ public:
 
 
 private slots:
-    void on_btn_drw_none_clicked();
+    //void on_btn_drw_none_clicked();
 
     void on_btn_clear_clicked();
 
