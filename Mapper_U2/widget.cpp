@@ -92,7 +92,7 @@ void Widget::on_btn_tst_algorithms_clicked()
 
     int i = 0;
     int i_max = 10;//10;
-    int sets[i_max] = {1000,5000,10000,25000,50000,75000,100000,250000,500000,750000,1000000};
+    int sets[] = {1000,5000,10000,25000,50000,75000,100000,250000,500000,750000,1000000};
     QVector<QPointF> points;
 
     // Circle
