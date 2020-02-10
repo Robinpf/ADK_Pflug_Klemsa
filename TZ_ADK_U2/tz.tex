@@ -248,10 +248,10 @@ Pokud bod leží vpravo od linie, je poslední bod CH odebrán a cyklus se opaku
 Striktně konvexní obálky jsou takové, že po sobě následující 3 body neleží na stejné přímce. Striktně konvexní obálky byly tvořeny ve funkci \textit{strictlyConvex}. Tato funkce příjmá na vstupu klasickou konvexní obálku ve formě polygonu. Z polygonu jsou nejprve odstraňovány duplicitní body. Poté je kontrolováno, zda tři po sobě jdoucí body neleží na stejné přímce. Pokud ano, prostřední bod je odstraněn z konvexní obálky.
 
 \begin{enumerate}
-\item $ for(int i=0; i<(ch.size()-2); i++){$
-\item $     if(getPointLinePosition(ch[i+2],ch[i],ch[i+1])==-1){$
+\item $ for(int i=0; i<(ch.size()-2); i++)$\{
+\item $     if(getPointLinePosition(ch[i+2],ch[i],ch[i+1])==-1)$
 \item $         ch.remove(i+1);$
-\item $         i--;} $
+\item $         i--;$\}
 \end{enumerate}
 
 \subsection{Jarvis Scan: existence kolineárních bodů v datasetu}
@@ -272,17 +272,16 @@ Circle
 Square
 \begin{enumerate}
 \item $x = (((double)rand() / RAND_MAX) * a) - a/2;$
-\item $            y = (((double)rand() / RAND_MAX) * a) - a/2;$
-\item $            point.setX(center.x() + x);$
-\item $            point.setY(center.y() + y);$
-\item $            if (rand() % 2) {$
-\item $                x = rand() % 2 ? center.x() - a/2 : center.x() + a/2;$
-\item $                point.setX(x);$
-\item $            } else {$
-\item $                y = rand() % 2 ? center.y() - a/2 : center.y() + a/2;$
-\item $                point.setY(y);$
-\item $            }$
-\item $            points.push_back(point);$
+\item $y = (((double)rand() / RAND_MAX) * a) - a/2;$
+\item $point.setX(center.x() + x);$
+\item $point.setY(center.y() + y);$
+\item if (rand() \% 2)
+\item $x = rand() \% 2 ? center.x() - a/2 : center.x() + a/2;$
+\item $point.setX(x);$
+\item $else $
+\item $y = rand() \% 2 ? center.y() - a/2 : center.y() + a/2;$
+\item $point.setY(y);$
+\item $points.push_back(point);$
 \end{enumerate}
 
 Raster

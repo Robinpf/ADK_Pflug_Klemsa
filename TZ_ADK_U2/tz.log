@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.11)  10 FEB 2020 00:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.11)  10 FEB 2020 09:35
 entering extended mode
 **./tz.tex
 (tz.tex
@@ -881,175 +881,176 @@ Package hyperref Warning: Composite letter `\textasciicaron+e'
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 250.
+(hyperref)                removing `\textring' on input line 257.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 253.
+(hyperref)                removing `\textring' on input line 260.
 
+[10]
 
 Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 264.
+(hyperref)                removing `\textasciicaron' on input line 305.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--268
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 269--273
+Underfull \hbox (badness 10000) in paragraph at lines 307--309
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--278
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 279--283
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 284--288
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--293
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 294--298
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 299--303
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 304--308
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--313
+Underfull \hbox (badness 10000) in paragraph at lines 310--314
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 315--316
+Underfull \hbox (badness 10000) in paragraph at lines 315--319
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
+Underfull \hbox (badness 10000) in paragraph at lines 320--324
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--325
+Underfull \hbox (badness 10000) in paragraph at lines 325--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--329
+Underfull \hbox (badness 10000) in paragraph at lines 330--334
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--339
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--344
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--349
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 350--354
 
  []
 
 [12]
-<data_jarvis_scan.png, id=264, 227.8914pt x 232.2276pt>
+Underfull \hbox (badness 10000) in paragraph at lines 356--357
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 359--361
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 364--366
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--370
+
+ []
+
+[13]
+<data_jarvis_scan.png, id=294, 227.8914pt x 232.2276pt>
 File: data_jarvis_scan.png Graphic file (type png)
 <use data_jarvis_scan.png>
-Package pdftex.def Info: data_jarvis_scan.png  used on input line 345.
+Package pdftex.def Info: data_jarvis_scan.png  used on input line 386.
 (pdftex.def)             Requested size: 284.52756pt x 289.9613pt.
-<figure_jarvis_scan.png, id=266, 962.09438pt x 702.37407pt>
+<figure_jarvis_scan.png, id=296, 962.09438pt x 702.37407pt>
 File: figure_jarvis_scan.png Graphic file (type png)
 <use figure_jarvis_scan.png>
-Package pdftex.def Info: figure_jarvis_scan.png  used on input line 371.
+Package pdftex.def Info: figure_jarvis_scan.png  used on input line 412.
 (pdftex.def)             Requested size: 284.52756pt x 207.72371pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13 <./data_jarvis_scan.png>]
-<data_sweep_line.png, id=274, 227.6505pt x 232.2276pt>
+[14 <./data_jarvis_scan.png>]
+<data_sweep_line.png, id=304, 227.6505pt x 232.2276pt>
 File: data_sweep_line.png Graphic file (type png)
 <use data_sweep_line.png>
-Package pdftex.def Info: data_sweep_line.png  used on input line 380.
+Package pdftex.def Info: data_sweep_line.png  used on input line 421.
 (pdftex.def)             Requested size: 284.52756pt x 290.27669pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figure_sweep_line.png, id=275, 962.09438pt x 702.37407pt>
+<figure_sweep_line.png, id=305, 962.09438pt x 702.37407pt>
 File: figure_sweep_line.png Graphic file (type png)
 <use figure_sweep_line.png>
-Package pdftex.def Info: figure_sweep_line.png  used on input line 406.
+Package pdftex.def Info: figure_sweep_line.png  used on input line 447.
 (pdftex.def)             Requested size: 284.52756pt x 207.72371pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14 <./figure_jarvis_scan.png (PNG copy)> <./data_sweep_line.png>] [15 <./figur
+[15 <./figure_jarvis_scan.png (PNG copy)> <./data_sweep_line.png>] [16 <./figur
 e_sweep_line.png (PNG copy)>]
-<data_quick_hull.png, id=289, 228.1323pt x 235.1184pt>
+<data_quick_hull.png, id=319, 228.1323pt x 235.1184pt>
 File: data_quick_hull.png Graphic file (type png)
 <use data_quick_hull.png>
-Package pdftex.def Info: data_quick_hull.png  used on input line 416.
+Package pdftex.def Info: data_quick_hull.png  used on input line 457.
 (pdftex.def)             Requested size: 284.52756pt x 293.24788pt.
-<figure_quick_hull.png, id=290, 962.09438pt x 700.86844pt>
+<figure_quick_hull.png, id=320, 962.09438pt x 700.86844pt>
 File: figure_quick_hull.png Graphic file (type png)
 <use figure_quick_hull.png>
-Package pdftex.def Info: figure_quick_hull.png  used on input line 442.
+Package pdftex.def Info: figure_quick_hull.png  used on input line 483.
 (pdftex.def)             Requested size: 284.52756pt x 207.27841pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16
+[17
 
- <./data_quick_hull.png>] [17 <./figure_quick_hull.png (PNG copy)>]
-
-Package hyperref Warning: Composite letter `\textasciicaron+e'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 447.
-
+ <./data_quick_hull.png>] [18 <./figure_quick_hull.png (PNG copy)>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 450.
+(hyperref)                removing `\textasciicaron' on input line 488.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 457--459
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 491.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 498--500
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 461.
-[18
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 502.
+[19
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 461.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 502.
  (tz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 461.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 461.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 502.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 502.
 Package rerunfilecheck Info: File `tz.out' has not changed.
 (rerunfilecheck)             Checksum: B0A7014DD6B6729D015D7D410DEAEE5D;2187.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 461.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 502.
  ) 
 Here is how much of TeX's memory you used:
- 11191 strings out of 492484
- 161612 string characters out of 3122959
+ 11220 strings out of 492484
+ 161836 string characters out of 3122959
  274422 words of memory out of 3000000
- 15213 multiletter control sequences out of 15000+200000
+ 15215 multiletter control sequences out of 15000+200000
  10449 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,9n,45p,1017b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,9n,45p,1017b,462s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/HP/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
 msfonts/cm/cmmi12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX 2.9/fonts/type
@@ -1063,9 +1064,9 @@ AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
 8.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmti12.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msam10.pfb>
-Output written on tz.pdf (19 pages, 1136829 bytes).
+Output written on tz.pdf (20 pages, 1147328 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
+ 401 PDF objects out of 1000 (max. 8388607)
+ 117 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 
